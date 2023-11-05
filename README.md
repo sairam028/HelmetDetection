@@ -1,12 +1,13 @@
-import cv2
-import numpy as np
-import random
-import os
+#import cv2
+#import numpy as np
+#import random
+#import os
 from PIL import Image
-import time
-import imutils
+#import time
+#import imutils
 from tensorflow.keras.models import load_model
-import pytesseract  # Import Tesseract OCR library
+#import pytesseract  
+# Import Tesseract OCR library
 
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 
