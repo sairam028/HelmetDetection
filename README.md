@@ -78,19 +78,19 @@ while ret:
                 confidences.append(float(confidence))
                 classIds.append(class_id)
 
-    # Perform OCR on the detected regions
+# Perform OCR on the detected regions
     for i in range(len(boxes)):
         x, y, w, h = boxes[i]
         roi = img[y:y + h, x:x + w]
         text = perform_ocr(roi)
         
-        # Draw bounding box and label text on the image
+# Draw bounding box and label text on the image
         color = COLORS[classIds[i]]
         cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
         label = f"Class {classIds[i]} - {text}"
         cv2.putText(img, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-    # Write the processed frame to the output video
+# Write the processed frame to the output video
     writer.write(img)
 
 # Release video writer and capture objects
