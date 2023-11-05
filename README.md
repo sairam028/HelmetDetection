@@ -49,33 +49,28 @@ while ret:
     ret, img = cap.read()
     img = imutils.resize(img, height=500)  # Fixed height assignment
     
-    height, width = img.shape[:2]
+ height, width = img.shape[:2]
 
-    blob = cv2.dnn.blobFromImage(img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+blob = cv2.dnn.blobFromImage(img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
 
-    net.setInput(blob)
+  net.setInput(blob)
     outs = net.forward(output_layers)
-
     confidences = []
     boxes = []
     classIds = []
-
     for out in outs:
         for detection in out:
             scores = detection[5:]
             class_id = np.argmax(scores)
             confidence = scores[class_id]
-
-            if confidence > 0.3:
-                center_x = int(detection[0] * width)
+         if confidence > 0.3:
+              center_x = int(detection[0] * width)
                 center_y = int(detection[1] * height)
                 w = int(detection[2] * width)
                 h = int(detection[3] * height)
-
-                x = int(center_x - w / 2)
-                y = int(center_y - h / 2)
-
-                boxes.append([x, y, w, h])
+x = int(center_x - w / 2)
+y = int(center_y - h / 2)
+         boxes.append([x, y, w, h])
                 confidences.append(float(confidence))
                 classIds.append(class_id)
 
@@ -92,11 +87,11 @@ while ret:
         cv2.putText(img, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
 # Write the processed frame to the output video
-    writer.write(img)
+ writer.write(img)
 
 # Release video writer and capture objects
-writer.release()
-cap.release()
+  writer.release()
+   cap.release()
+# Close all OpenCV windows    
 
-# Close all OpenCV windows
-cv2.destroyAllWindows()
+  cv2.destroyAllWindows()
