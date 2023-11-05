@@ -1,5 +1,5 @@
 # HelmetDetection
-    #import cv2
+   #import cv2
     #import numpy as np
     #import random
     #import os
@@ -10,21 +10,21 @@
     #import pytesseract
     # Import Tesseract OCR library
     
-    os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
+   os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
     
-    net = cv2.dnn.readNet("yolov3-custom_7000.weights", "yolov3-custom.cfg")
+   net = cv2.dnn.readNet("yolov3-custom_7000.weights", "yolov3-custom.cfg")
     net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
     net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
     
-    model = load_model('helmet_nonhelmet_cnn.h5')  # Fixed model filename typo
+   model = load_model('helmet_nonhelmet_cnn.h5')  
     print('Model loaded!!!')
     
-    cap = cv2.VideoCapture('testing_videos/test2.mp4')
+   cap = cv2.VideoCapture('testing_videos/test2.mp4')
     COLORS = [(0, 255, 0), (0, 0, 255)]
     
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')  # Fixed codec specifier
+   fourcc = cv2.VideoWriter_fourcc(*'XVID')  
     
-    writer = cv2.VideoWriter('output.avi', fourcc, 5, (888, 588))
+   writer = cv2.VideoWriter('output.avi', fourcc, 5, (888, 588))
     writer.open()
 
 # Function to perform OCR on an image
@@ -33,10 +33,10 @@ def perform_ocr(image):
         # Convert the image to grayscale for OCR
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
-        # Perform OCR using pytesseract
-        text = pytesseract.image_to_string(gray)
+# Perform OCR using pytesseract
+   text = pytesseract.image_to_string(gray)
         
-        return text
+   return text
     except:
         return ""
 
@@ -47,7 +47,7 @@ ret = True
 
 while ret:
     ret, img = cap.read()
-    img = imutils.resize(img, height=500)  # Fixed height assignment
+    img = imutils.resize(img, height=500)  
     
  height, width = img.shape[:2]
 
